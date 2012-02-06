@@ -1,0 +1,16 @@
+This is based on ogcserver cgi wms handler.
+
+simply import * from utils.py
+
+and use like so:
+
+def wms_view(request):
+    class WMSFactory(BaseWMSFactory):
+        def __init__(self):
+            BaseWMSFactory.__init__(self)
+
+            layer = mapnik.Layer('name')
+            #important for some reason to initialize
+            layer.wms_srs = None
+            #everything like in ogcserver docs
+    return ogc_response(request, WMSFactory())
